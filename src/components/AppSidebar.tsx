@@ -39,8 +39,6 @@ export function AppSidebar() {
   const collapsed = state === "collapsed";
 
   const isActive = (path: string) => currentPath === path;
-  const getNavCls = ({ isActive }: { isActive: boolean }) =>
-    isActive ? "bg-primary/10 text-primary font-medium border-r-2 border-primary" : "hover:bg-muted/50";
 
   return (
     <Sidebar className={`${collapsed ? "w-16" : "w-64"} transition-all duration-300 border-r bg-card`}>
@@ -70,12 +68,13 @@ export function AppSidebar() {
               <SidebarMenu>
                 {navigationItems.map((item) => (
                   <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton asChild>
+                    <SidebarMenuButton 
+                      asChild 
+                      isActive={isActive(item.url)}
+                    >
                       <NavLink 
                         to={item.url} 
-                        className={({ isActive }) => 
-                          `flex items-center gap-3 px-3 py-2 rounded-lg transition-colors ${getNavCls({ isActive })}`
-                        }
+                        className="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors"
                       >
                         <item.icon className="w-5 h-5 flex-shrink-0" />
                         {!collapsed && <span>{item.title}</span>}

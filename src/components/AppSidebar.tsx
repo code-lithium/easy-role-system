@@ -69,6 +69,7 @@ export function AppSidebar() {
                 {navigationItems.map((item) => (
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton 
+                      asChild
                       isActive={isActive(item.url)}
                     >
                       <NavLink 
